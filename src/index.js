@@ -7,8 +7,8 @@ const app = express();
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
-    helpers:{
-        showRating:showRating
+    helpers: {
+        showRating: showRating
     }
 }));
 
