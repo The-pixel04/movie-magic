@@ -1,6 +1,4 @@
 import Movie from "../models/Movie.js";
-// import movies from "../movies.js";
-import { v4 as uuid } from 'uuid'
 
 export default {
     getMovie(movieId) {
@@ -8,17 +6,28 @@ export default {
         return movie
     },
     createMovie(movie) {
-        // let id = uuid();
-        // movies.push({
-        //     id: id,
-        //     ...movie,
-        //     rating: Number(movie.rating)
-        // });
+        const result  = Movie.create({
+            ...movie,
+            rating: Number(movie.rating),
+            year: Number(movie.year)
+        });
+        return result
     },
     getAll(filter = {}) {
-        let result = Movie.find({});
-        console.log(result)
+        let query = Movie.find({});
 
-        return result
+        if (filter.search) {
+            query = query.where({ title: filter.search })
+        }
+
+        if (filter.genre) {
+            query = query.where({ genre: filter.genre })
+        }
+
+        if (filter.year) {
+            query = query.where({ year: Number(filter.year) })
+        }
+
+        return query
     }
 }
