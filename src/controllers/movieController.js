@@ -18,13 +18,17 @@ movieController.get('/:movieId/details', async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovie(movieId);
 
-    res.render('details', { movie });
+    res.render('movie/details', { movie });
 })
 
 movieController.get('/search', async (req, res) => {
     const filter = req.query
     let movies = await movieService.getAll(filter);
     res.render('search', { movies, filter })
+})
+
+movieController.get('/attach-cats', (req,res)=>{
+    
 })
 
 export default movieController
