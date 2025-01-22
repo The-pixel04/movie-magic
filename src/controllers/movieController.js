@@ -27,8 +27,8 @@ movieController.get('/search', async (req, res) => {
     res.render('search', { movies, filter })
 })
 
-movieController.get('/attach-cats', (req,res)=>{
-    
+movieController.get('/:movieId/attach-cast', (req,res)=>{
+    res.render('movie/attach-cast')
 })
 
 export default movieController
