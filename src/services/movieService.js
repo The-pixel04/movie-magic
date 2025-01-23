@@ -6,7 +6,7 @@ export default {
         return movie
     },
     createMovie(movie) {
-        const result  = Movie.create({
+        const result = Movie.create({
             ...movie,
             rating: Number(movie.rating),
             year: Number(movie.year)
@@ -29,5 +29,12 @@ export default {
         }
 
         return query
+    },
+    async attachCast(movieId, castId) {
+        const movie = await Movie.findById(movieId);
+        movie.casts.push(castId);
+        await movie.save();
+        return movie;
     }
+
 }

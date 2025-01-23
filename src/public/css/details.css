@@ -188,7 +188,7 @@ span {
 }
 
 .cast-card {
-  width: 300px;
+  width: 350px;
   background-color: #6d6875;
   border-radius: 10%;
   color: white;
@@ -212,8 +212,8 @@ span {
   border-radius: 10%;
   margin-left: 26%;
   margin-top: 10px;
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 220px;
 }
 
 .PV {
