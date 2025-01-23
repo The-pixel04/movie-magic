@@ -19,9 +19,9 @@ movieController.get('/:movieId/details', async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovie(movieId).populate('casts');
 
-    const casts=[];
+    const casts = [];
 
-    res.render('movie/details', { movie , casts});
+    res.render('movie/details', { movie, casts });
 })
 
 movieController.get('/search', async (req, res) => {
@@ -33,16 +33,16 @@ movieController.get('/search', async (req, res) => {
 movieController.get('/:movieId/attach-cast', async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovie(movieId);
-    const casts = await castService.getAll(); 
+    const casts = await castService.getAll({ exclude: movie.casts });
 
-    res.render('movie/attach-cast', { movie, casts:casts });
+    res.render('movie/attach-cast', { movie, casts: casts });
 })
 
-movieController.post('/:movieId/attach-cast',async (req, res) => {
-    const castId=req.body.cast;
-    const movieId=req.params.movieId;
-    await movieService.attachCast(movieId,castId);
-     
+movieController.post('/:movieId/attach-cast', async (req, res) => {
+    const castId = req.body.cast;
+    const movieId = req.params.movieId;
+    await movieService.attachCast(movieId, castId);
+
     res.redirect(`/movies/${movieId}/details`)
 });
 
