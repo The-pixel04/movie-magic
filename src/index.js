@@ -32,4 +32,4 @@ app.use('/static', express.static('src/public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(routes);
 
-app.listen(5001, () => console.log('Server is listening no port http://localhost:5001...'));
+app.listen(5001, () => console.log('Server is listening on port http://localhost:5001...'));
