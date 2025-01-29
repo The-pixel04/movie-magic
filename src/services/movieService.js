@@ -5,11 +5,12 @@ export default {
         const movie = Movie.findById(movieId);
         return movie
     },
-    createMovie(movie) {
+    createMovie(movie, creatorId) {
         const result = Movie.create({
             ...movie,
             rating: Number(movie.rating),
-            year: Number(movie.year)
+            year: Number(movie.year),
+            creator: creatorId
         });
         return result
     },
