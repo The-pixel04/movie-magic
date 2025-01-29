@@ -17,4 +17,17 @@ authController.get('/login', (req, res) => {
     res.render('auth/login');
 });
 
+authController.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const token = await authService.login(email, password);
+        console.log(token)
+        res.redirect('/');
+    } catch (err) {
+        console.error(err.message);
+        return res.redirect('/404');
+    }
+});
+
 export default authController;
