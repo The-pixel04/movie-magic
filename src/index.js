@@ -3,6 +3,7 @@ import handlebars from 'express-handlebars'
 import routes from './routes.js';
 import showRating from './helpers/ratingHelper.js';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
@@ -31,5 +32,6 @@ app.set('views', './src/views')
 app.use('/static', express.static('src/public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(routes);
+app.use(cookieParser());
 
 app.listen(5001, () => console.log('Server is listening on port http://localhost:5001...'));
