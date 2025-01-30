@@ -31,7 +31,7 @@ export default {
 
         return query
     },
-    async attachCast(movieId, castId, character) {
+    attachCast(movieId, castId, character) {
         return Movie.findByIdAndUpdate(movieId, {
             $push: {
                 casts: {
@@ -40,6 +40,9 @@ export default {
                 }
             }
         })
+    },
+    deleteMovie(movieId) {
+        return Movie.findByIdAndDelete(movieId);
     }
 
 }
