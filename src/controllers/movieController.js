@@ -21,7 +21,7 @@ movieController.get('/:movieId/details', async (req, res) => {
 
     const casts = [];
 
-    let isCreator = movie.creator && movie.creator.toString() === req.user?._id
+    let isCreator = movie.creator && movie.creator.equals(req.user?._id);
 
     res.render('movie/details', { movie, casts, isCreator });
 })
