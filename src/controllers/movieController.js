@@ -19,11 +19,9 @@ movieController.get('/:movieId/details', async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getMovie(movieId).populate('casts.cast');
 
-    const casts = [];
-
     let isCreator = movie.creator && movie.creator.equals(req.user?._id);
 
-    res.render('movie/details', { movie, casts, isCreator });
+    res.render('movie/details', { movie, isCreator});
 })
 
 movieController.get('/search', async (req, res) => {
