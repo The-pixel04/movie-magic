@@ -21,7 +21,13 @@
 
                 <p class="disc">Description: {{movie.description}}</p>
                 <p class="card-category">Category: {{movie.category}}</p>
-                <a href="/movies/{{movie.id}}/attach-cast" class="details">Atttach</a>
+                {{#if isCreator}}
+                <div class="details-btn">
+                    <a href="/movies/{{movie.id}}/attach-cast" class="details" id="edit-button">Atttach</a>
+                    <a href="#"><button id="edit-button">Edit</button></a>
+                    <a href="#"><button id="delete-button">Delete</button></a>
+                </div>
+                {{/if}}
             </div>
         </div>
         <div class="card_right">
@@ -35,8 +41,7 @@
         {{#each movie.casts}}
         <div class="cast-card">
             <div class="card-img">
-                <img src="{{cast.imageUrl}}"
-                    alt="{{cast.name}}">
+                <img src="{{cast.imageUrl}}" alt="{{cast.name}}">
             </div>
             <div class="cast-info">
                 <h1>{{cast.name}}</h1>
