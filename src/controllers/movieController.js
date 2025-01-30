@@ -21,7 +21,7 @@ movieController.get('/:movieId/details', async (req, res) => {
 
     let isCreator = movie.creator && movie.creator.equals(req.user?._id);
 
-    res.render('movie/details', { movie, isCreator});
+    res.render('movie/details', { movie, isCreator });
 })
 
 movieController.get('/search', async (req, res) => {
@@ -49,15 +49,35 @@ movieController.post('/:movieId/attach-cast', async (req, res) => {
 
 movieController.get('/:movieId/delete', async (req, res) => {
     const movieId = req.params.movieId;
-    const movies = await movieService.getMovie(movieId);
+    const movie = await movieService.getMovie(movieId);
 
-    if(!movies.creator?.equals(req.user?._id)){
+    if (!movie.creator?.equals(req.user?._id)) {
         return res.redirect('/404');
     }
 
     await movieService.deleteMovie(movieId);
 
     res.redirect('/');
-})
+});
+
+movieController.get('/:movieId/edit', async (req, res) => {
+    const movieId = req.params.movieId;
+    const movie = await movieService.getMovie(movieId);
+
+    if (!movie.creator?.equals(req.user?._id)) {
+        return res.redirect('/404');
+    }
+
+    res.render('movie/edit', { movie });
+});
+
+movieController.post('/:movieId/edit', async (req, res) => {
+    const movieId = req.params.movieId;
+    const newInformation = req.body;
+    
+    await movieService.editMovie(movieId, newInformation);
+
+    res.redirect(`/movies/${movieId}/details`);
+});
 
 export default movieController
