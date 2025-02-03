@@ -74,7 +74,7 @@ movieController.get('/:movieId/edit', async (req, res) => {
 movieController.post('/:movieId/edit', async (req, res) => {
     const movieId = req.params.movieId;
     const newInformation = req.body;
-    
+
     await movieService.editMovie(movieId, newInformation);
 
     res.redirect(`/movies/${movieId}/details`);
