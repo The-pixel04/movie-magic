@@ -1,6 +1,6 @@
 import { Router } from "express";
 import authService from "../services/authService.js";
-import { getErrorMessage } from "../../utils/errorUtils.js";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const authController = Router();
 

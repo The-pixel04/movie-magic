@@ -1,6 +1,7 @@
 import { Router } from "express";
 import movieService from "../services/movieService.js";
 import castService from "../services/castService.js";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const movieController = Router();
 
@@ -75,9 +76,13 @@ movieController.post('/:movieId/edit', async (req, res) => {
     const movieId = req.params.movieId;
     const newInformation = req.body;
 
-    await movieService.editMovie(movieId, newInformation);
+    try {
+        await movieService.editMovie(movieId, newInformation);
+    } catch (error) {
+        return res.render(`movie/edit`, { movie: newInformation, error: getErrorMessage(error) });
+    }
 
-    res.redirect(`/movies/${movieId}/details`);
+    res.redirect(`/movie/${movieId}/details`);
 });
 
 export default movieController

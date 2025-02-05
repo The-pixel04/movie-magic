@@ -45,7 +45,7 @@ export default {
         return Movie.findByIdAndDelete(movieId);
     }, 
     editMovie(movieId, newMovie){
-        return Movie.findByIdAndUpdate(movieId, newMovie);
+        return Movie.findByIdAndUpdate(movieId, newMovie, {runValidators: true});
     }
 
 }
