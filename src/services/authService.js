@@ -31,7 +31,7 @@ export default {
 
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) {
-            throw new Error('User not found');
+            throw new Error('Invalid password');
         }
 
         const payload = {
