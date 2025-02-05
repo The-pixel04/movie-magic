@@ -6,6 +6,12 @@ const SECRET = process.env.JWT_SECRET || 'BASICSECRET';
 
 export default {
     async register(userData) {
+        if (userData.email === '') {
+            throw new Error('Email is required');
+        }
+        console.log('Registering user with email:', userData.email); // Add logging
+        console.log('Passwords:', userData.password, userData.rePassword);
+        
         if (userData.password !== userData.rePassword) {
             throw new Error('Passwords do not match');
         }
