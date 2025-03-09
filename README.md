@@ -1,2 +1,4 @@
-# movie-magic
-My first project in Git-Hub - Movie Magic.
+# Movie Magic
+
+# 🔍 Introduction
+Workshop for JS Web (SoftUni module). This website
