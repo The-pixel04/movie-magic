@@ -39,7 +39,6 @@ const movieSchema = new Schema({
     imageUrl: {
         type: String,
         required: [true, 'Image URL is required'],
-        match: [/^https?:\/\//, 'Image URL must start with http:// or https://']
     },
     rating: {
         type: Number,
